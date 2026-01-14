@@ -96,7 +96,7 @@ const SocialFooter = ({ small = false }) => (
         </a>
       </div>
       <p className={`${small ? 'text-xs' : 'text-sm'} text-gray-600 leading-relaxed`}>
-        This game is made by <span className="font-semibold text-purple-600">AI</span> and a present for <span className="font-semibold text-pink-600">elementary school students! 💝</span>
+        This game is made by <span className="font-semibold text-purple-600">AI</span> and inspired by <span className="font-semibold text-pink-600">My Nephew! 💝</span>
       </p>
     </div>
   </footer>
