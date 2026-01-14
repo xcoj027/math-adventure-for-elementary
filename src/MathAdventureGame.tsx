@@ -27,56 +27,50 @@ const ANIMATIONS = `
     100% { background-position: 100% 0%, 100% 100%, 0% 100%, 0% 0%; }
   }
   @keyframes floatUpPop {
-    0% { transform: translateY(20px) scale(0.5); opacity: 0; }
-    50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
-    100% { transform: translateY(-60px) scale(1); opacity: 0; }
+    0% { transform: translate(-50%, 20px) scale(0.5) rotate(-5deg); opacity: 0; }
+    40% { transform: translate(-50%, -10px) scale(1.3) rotate(5deg); opacity: 1; }
+    100% { transform: translate(-50%, -30px) scale(1.1) rotate(5deg); opacity: 0; }
   }
   @keyframes firework {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-    30% { transform: scale(1.2); box-shadow: 0 0 40px 20px rgba(34, 197, 94, 0.4); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    0% { transform: scale(1) rotate(0deg); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    25% { transform: scale(1.08) rotate(-3deg); }
+    50% { transform: scale(1.08) rotate(3deg); box-shadow: 0 0 30px 15px rgba(34, 197, 94, 0.4); }
+    75% { transform: scale(1.08) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0deg); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
   }
   @keyframes confetti-fall {
-    0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
-  }
-  @keyframes rainbow-border {
-    0% { border-color: #ff0000; }
-    20% { border-color: #ff00ff; }
-    40% { border-color: #0000ff; }
-    60% { border-color: #00ffff; }
-    80% { border-color: #00ff00; }
-    100% { border-color: #ffff00; }
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(250px) rotate(720deg); opacity: 0; }
   }
   .moving-car {
     position: fixed;
-    bottom: 80px;
     left: 0;
-    animation: moveCar 6s linear infinite;
     z-index: 5;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    animation: moveCar linear infinite;
   }
   .celebration-text {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     pointer-events: none;
     z-index: 100;
-    animation: floatUpPop 1s ease-out forwards;
+    animation: floatUpPop 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     font-size: 3.5rem;
     font-weight: 900;
-    text-shadow: 2px 2px 0px white, -2px -2px 0px white;
-  }
-  .victory-card {
-    border: 8px solid;
-    animation: rainbow-border 2s linear infinite;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to bottom, #fde047, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 0px rgba(255,255,255,0.8));
   }
   .confetti {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    animation: confetti-fall 2s linear forwards;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall 1.5s ease-in forwards;
     z-index: 50;
   }
 `;
@@ -119,9 +113,10 @@ const BackgroundWrapper = ({ children, carDelays, carPositions }: any) => (
     <style>{ANIMATIONS}</style>
     
     <div className="relative z-10 flex-1 flex flex-col">
-      <div className="moving-car" style={{animationDelay: `${carDelays[0]}s`, fontSize: '48px', bottom: `${carPositions[0]}px`}}>🚗</div>
-      <div className="moving-car" style={{animationDelay: `${carDelays[1]}s`, fontSize: '52px', bottom: `${carPositions[1]}px`}}>🚕</div>
-      <div className="moving-car" style={{animationDelay: `${carDelays[2]}s`, fontSize: '45px', bottom: `${carPositions[2]}px`}}>🚙</div>
+      {/* 3 chiếc xe với 3 tốc độ khác nhau: 4s (Nhanh), 7s (Trung bình), 10s (Chậm) */}
+      <div className="moving-car" style={{animationDelay: `${carDelays[0]}s`, animationDuration: '8s', fontSize: '48px', bottom: `${carPositions[0]}px`}}>🚗</div>
+      <div className="moving-car" style={{animationDelay: `${carDelays[1]}s`, animationDuration: '9s', fontSize: '52px', bottom: `${carPositions[1]}px`}}>🚕</div>
+      <div className="moving-car" style={{animationDelay: `${carDelays[2]}s`, animationDuration: '10s', fontSize: '45px', bottom: `${carPositions[2]}px`}}>🚙</div>
       {children}
     </div>
   </div>
@@ -129,7 +124,7 @@ const BackgroundWrapper = ({ children, carDelays, carPositions }: any) => (
 
 export default function MathAdventureGame() {
   const [screen, setScreen] = useState<string>('welcome');
-  const [playerName, setPlayerName] = useState<string>('Student');
+  const [playerName, setPlayerName] = useState<string>('Chào Bạn !');
   const [grade, setGrade] = useState<number | string | null>(null);
   const [level, setLevel] = useState<number>(1);
   const [score, setScore] = useState<number>(0);
@@ -143,8 +138,8 @@ export default function MathAdventureGame() {
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const [congratsText, setCongratsText] = useState<string>('');
   
-  const [carDelays] = useState<number[]>([-Math.random() * 4, -2 - Math.random() * 2, -4 - Math.random() * 2]);
-  const [carPositions] = useState<number[]>([20 + Math.random() * 40, 20 + Math.random() * 40, 20 + Math.random() * 40]);
+  const [carDelays] = useState<number[]>([-1, -3, -5]);
+  const [carPositions] = useState<number[]>([20 + Math.random() * 20, 50 + Math.random() * 20, 80 + Math.random() * 20]);
   
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -225,7 +220,7 @@ export default function MathAdventureGame() {
     
     const isCorrect = answer === question!.correctAnswer;
     if (isCorrect) {
-      const texts = ["AMAZING!", "BRAVO!", "MATH WIZARD!", "FANTASTIC!", "GENIUS!", "SUPER!"];
+      const texts = ["TUYỆT VỜI!", "HOAN HÔ!", "THIÊN TÀI!", "XUẤT SẮC!", "QUÁ ĐỈNH!", "SIÊU QUÁ!"];
       setCongratsText(texts[Math.floor(Math.random() * texts.length)]);
       setShowConfetti(true);
       setScore(score + 10);
@@ -279,32 +274,32 @@ export default function MathAdventureGame() {
           <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full">
             <div className="text-center mb-6">
               <div className="text-6xl mb-4 animate-bounce">🚀</div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Math Adventure!</h1>
-              <p className="text-gray-600">Let's have fun with numbers! 🎉</p>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Toán Học Kỳ Thú!</h1>
+              <p className="text-gray-600">Cùng học toán thật vui nào! 🎉</p>
             </div>
             <div className="flex flex-col gap-4">
               <div>
-                <label className="block font-bold text-gray-700 text-sm mb-2">Your Name:</label>
+                <label className="block font-bold text-gray-700 text-sm mb-2">Mình tên là:</label>
                 <input 
                   type="text" value={playerName} onChange={(e)=>setPlayerName(e.target.value)} 
-                  className="w-full px-4 py-3 rounded-xl border-2 border-purple-400 text-lg outline-none focus:border-purple-600" placeholder="Student"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-purple-400 text-lg outline-none focus:border-purple-600" placeholder="Bạn nhỏ"
                 />
               </div>
               <div>
-                <label className="block font-bold text-gray-700 text-sm mb-2">Grade Level:</label>
+                <label className="block font-bold text-gray-700 text-sm mb-2">Chọn lớp:</label>
                 <div className="grid grid-cols-3 gap-2">
                   {[1,2,3,4,5,6].map(g=>
                     <button key={g} onClick={()=>setGrade(g)} className={`px-3 py-3 rounded-xl font-bold transition-all ${grade===g?'bg-gradient-to-br from-purple-600 to-pink-600 text-white scale-110 shadow-lg':'bg-gray-200 text-gray-700 hover:scale-105'}`}>
-                      Grade {g}
+                      Lớp {g}
                     </button>
                   )}
                 </div>
                 <button onClick={()=>setGrade('multiplicationTable')} className={`w-full px-3 py-3 rounded-xl font-bold mt-2 transition-all ${grade==='multiplicationTable'?'bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-lg':'bg-gray-200 text-gray-700 hover:scale-105'}`}>
-                  ✖️ Multiplication Table (1-9)
+                  ✖️ Bảng cửu chương (1-9)
                 </button>
               </div>
               <button onClick={startGame} disabled={!grade} className={`w-full px-4 py-4 mt-4 rounded-xl font-bold text-xl border-none bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-lg transition-all ${!grade?'opacity-50 cursor-not-allowed':'hover:scale-105 cursor-pointer'}`}>
-                Start Adventure! 🚀
+                Bắt đầu khám phá! 🚀
               </button>
             </div>
           </div>
@@ -318,7 +313,7 @@ export default function MathAdventureGame() {
     return (
       <BackgroundWrapper carDelays={carDelays} carPositions={carPositions}>
         <div className="bg-white rounded-xl shadow-lg flex justify-between items-center p-4 max-w-[896px] mx-auto w-full mb-8">
-          <button onClick={() => setScreen('welcome')} className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-gray-200 hover:bg-gray-300 transition-all text-gray-700">← Back</button>
+          <button onClick={() => setScreen('welcome')} className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-gray-200 hover:bg-gray-300 transition-all text-gray-700">← Quay lại</button>
           <div className="flex items-center gap-2"><span className="text-2xl">👑</span><span className="font-bold text-lg">{playerName}</span></div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1"><span className="text-xl">🏆</span><span className="font-bold">{score}</span></div>
@@ -345,26 +340,28 @@ export default function MathAdventureGame() {
         </div>
 
         <div className="max-w-[896px] mx-auto w-full px-4 relative">
-          {congratsText && <div className="celebration-text bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">{congratsText}</div>}
           
-          {showConfetti && (
-            <div className="fixed inset-0 pointer-events-none z-50">
-              {[...Array(150)].map((_, i) => (
-                <div key={i} className="confetti" style={{ 
-                  left: `${Math.random() * 100}%`, top: '-5%', 
-                  backgroundColor: ['#fbbf24', '#f87171', '#60a5fa', '#34d399', '#a78bfa', '#ec4899'][Math.floor(Math.random()*6)], 
-                  borderRadius: Math.random() > 0.5 ? '50%' : '2px',
-                  animationDelay: `${Math.random() * 0.4}s` 
-                }} />
-              ))}
-            </div>
-          )}
-
           <div className="relative rounded-3xl mb-6 overflow-hidden p-1 shadow-xl" style={{
             background: `linear-gradient(135deg, ${timeLeft > 5 ? '#a78bfa, #ec4899, #60a5fa' : '#f87171, #ef4444, #fca5a5'})`,
             backgroundSize: '400% 100%', animation: `borderLineMove ${timeLeft > 5 ? '1s' : '0.5s'} linear infinite`
           }}>
             <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-[calc(1.5rem-4px)] p-8 relative overflow-hidden">
+              
+              {congratsText && <div className="celebration-text">{congratsText}</div>}
+              
+              {showConfetti && (
+                <div className="absolute inset-0 pointer-events-none z-50 overflow-hidden">
+                  {[...Array(40)].map((_, i) => (
+                    <div key={i} className="confetti" style={{ 
+                      left: `${Math.random() * 100}%`, top: '-10%', 
+                      backgroundColor: ['#fbbf24', '#f87171', '#60a5fa', '#34d399', '#a78bfa', '#ec4899'][Math.floor(Math.random()*6)], 
+                      borderRadius: Math.random() > 0.5 ? '50%' : '2px',
+                      animationDelay: `${Math.random() * 0.4}s` 
+                    }} />
+                  ))}
+                </div>
+              )}
+
               <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
                 <span className="absolute top-4 left-8 text-5xl">🎨</span><span className="absolute top-8 right-12 text-4xl">📚</span><span className="absolute bottom-6 left-16 text-6xl">✏️</span>
               </div>
@@ -372,9 +369,9 @@ export default function MathAdventureGame() {
                 ⏱️ {Math.ceil(timeLeft)}s
               </div>
               <div className="text-center relative z-10">
-                <div className="inline-block mb-4 px-6 py-2 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full font-bold text-purple-800">🎯 Question {level}</div>
+                <div className="inline-block mb-4 px-6 py-2 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full font-bold text-purple-800">🎯 Câu hỏi số {level}</div>
                 <div className="text-7xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">{question.num1} {question.operation} {question.num2} = ?</div>
-                <div className="text-2xl text-gray-600 font-semibold">What's the answer? 🤔</div>
+                <div className="text-2xl text-gray-600 font-semibold">Kết quả là bao nhiêu nhỉ? 🤔</div>
               </div>
             </div>
           </div>
@@ -394,7 +391,7 @@ export default function MathAdventureGame() {
                   showFeedback && isCorrect ? 'bg-gradient-to-br from-emerald-400 to-green-500 border-green-600' :
                   showFeedback && isSelected ? 'bg-gradient-to-br from-red-300 to-red-400 border-red-500' :
                   `bg-gradient-to-br ${themes[i].bg} border-${themes[i].border} hover:scale-105 active:scale-95`
-                }`} style={showFeedback && isCorrect ? {animation: 'firework 0.5s ease-out infinite'} : {}}>
+                }`} style={showFeedback && isCorrect ? {animation: 'firework 0.8s ease-out 1'} : {}}>
                   <div className="absolute top-2 right-2 text-2xl opacity-30 rotate-12">{themes[i].emoji}</div>
                   {showFeedback && isCorrect && <div className="absolute top-2 left-2 text-4xl animate-bounce">⭐</div>}
                   {showFeedback && isSelected && !isCorrect && <div className="absolute top-2 left-2 text-4xl">❌</div>}
@@ -407,7 +404,7 @@ export default function MathAdventureGame() {
           <div className="min-h-[80px]">
             {showFeedback && (
               <div className={`p-6 rounded-xl text-center font-bold text-xl shadow-inner ${isTimeout ? 'bg-orange-200 text-orange-900' : selectedAnswer === question.correctAnswer ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'}`}>
-                {isTimeout ? "⏰ Time's up! Keep going!" : selectedAnswer === question.correctAnswer ? '🎉 Awesome! Correct!' : '💪 Try again! Keep going!'}
+                {isTimeout ? "⏰ Hết giờ rồi! Cố gắng câu sau nhé!" : selectedAnswer === question.correctAnswer ? '🎉 Giỏi quá! Chính xác rồi!' : '💪 Đừng bỏ cuộc! Tiếp tục nào!'}
               </div>
             )}
           </div>
@@ -423,21 +420,21 @@ export default function MathAdventureGame() {
     return (
       <BackgroundWrapper carDelays={carDelays} carPositions={carPositions}>
         <div className="flex-1 flex flex-col items-center justify-center">
-          <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center victory-card">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center">
             <div className="relative inline-block mb-4">
                <div className="text-9xl animate-bounce">🏆</div>
                <span className="absolute -top-4 -right-4 text-4xl animate-pulse">✨</span>
                <span className="absolute -bottom-2 -left-4 text-4xl animate-pulse" style={{animationDelay: '0.5s'}}>🌟</span>
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4">🎉 ULTIMATE VICTORY! 🎉</h1>
-            <p className="text-2xl font-bold text-gray-700 mb-2">{playerName}, you are a Math Star! 🌟</p>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4">🎉 CHIẾN THẮNG RỒI! 🎉</h1>
+            <p className="text-2xl font-bold text-gray-700 mb-2">{playerName} là ngôi sao toán học! 🌟</p>
             <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-100 rounded-2xl p-6 mb-6 shadow-sm">
-              <p className="text-xl font-bold text-green-600 mb-2">✅ Correct answers: {sc}</p>
-              <p className="text-xl font-bold text-red-600 mb-2">❌ Wrong answers: {fc}</p>
+              <p className="text-xl font-bold text-green-600 mb-2">✅ Câu đúng: {sc}</p>
+              <p className="text-xl font-bold text-red-600 mb-2">❌ Câu sai: {fc}</p>
               <div className="h-px bg-gray-200 my-2" />
-              <p className="text-3xl font-black text-purple-700 mt-2">Score: {score}</p>
+              <p className="text-3xl font-black text-purple-700 mt-2">Điểm số: {score}</p>
             </div>
-            <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">PLAY AGAIN! 🚀</button>
+            <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
           </div>
           <SocialFooter small />
         </div>

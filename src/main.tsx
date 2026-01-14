@@ -5,6 +5,7 @@ import MathAdventureGame from './MathAdventureGame.tsx';
 
 const router = createBrowserRouter([
   { path: "/", Component: MathAdventureGame, index: true },
+  { path: "*", Component: MathAdventureGame },
 ]);
 
 createRoot(document.getElementById('root')!).render(
