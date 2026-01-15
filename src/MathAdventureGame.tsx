@@ -15,7 +15,7 @@ interface CompletedLevel {
 }
 
 // --- Constants & Assets ---
-const SVG_BACKGROUND = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='skyGrad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2387CEEB;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23E0F6FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23skyGrad)' width='800' height='600'/%3E%3Crect fill='%23F5DEB3' y='400' width='800' height='200'/%3E%3Crect fill='%238B4513' x='0' y='350' width='800' height='50'/%3E%3Crect fill='%23654321' x='50' y='150' width='300' height='250'/%3E%3Crect fill='%23333' x='80' y='180' width='80' height='100'/%3E%3Crect fill='%2387CEEB' x='85' y='185' width='70' height='90'/%3E%3Crect fill='%23333' x='85' y='230' width='70' height='2'/%3E%3Crect fill='%23333' x='120' y='185' width='2' height='90'/%3E%3Crect fill='%23333' x='200' y='180' width='80' height='100'/%3E%3Crect fill='%2387CEEB' x='205' y='185' width='70' height='90'/%3E%3Crect fill='%23333' x='205' y='230' width='70' height='2'/%3E%3Crect fill='%23333' x='240' y='185' width='2' height='90'/%3E%3Crect fill='%238B4513' x='140' y='300' width='80' height='100'/%3E%3Crect fill='%23654321' x='145' y='305' width='70' height='90'/%3E%3Ccircle fill='%23FFD700' cx='155' cy='340' r='8'/%3E%3Cpolygon fill='%23654321' points='200,150 320,200 80,200'/%3E%3Crect fill='%23006400' x='500' y='320' width='60' height='80'/%3E%3Ccircle fill='%2332CD32' cx='530' cy='280' r='50'/%3E%3Ccircle fill='%2332CD32' cx='510' cy='300' r='40'/%3E%3Ccircle fill='%2332CD32' cx='550' cy='300' r='40'/%3E%3Crect fill='%23333' x='600' y='200' width='150' height='200'/%3E%3Crect fill='%23228B22' x='610' y='210' width='130' height='150'/%3E%3Ctext x='675' y='240' font-size='24' fill='white' text-anchor='middle' font-family='Arial' font-weight='bold'%3EABC%3C/text%3E%3Ctext x='675' y='270' font-size='20' fill='white' text-anchor='middle' font-family='Arial'%3E1+1=2%3C/text%3E%3Ctext x='675' y='300' font-size='20' fill='white' text-anchor='middle' font-family='Arial'%3E2×3=6%3C/text%3E%3Crect fill='%238B4513' x='665' y='320' width='20' height='80'/%3E%3Ccircle fill='%23FFD700' cx='100' cy='80' r='40'/%3E%3Cpath fill='white' d='M100,40 Q80,50 85,70 Q90,60 100,65 Q110,60 115,70 Q120,50 100,40'/%3E%3C/svg%3E")`;
+const SVG_BACKGROUND = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='skyGrad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2387CEEB;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23E0F6FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23skyGrad)' width='800' height='600'/%3E%3Crect fill='%23F5DEB3' y='400' width='800' height='200'/%3E%3Crect fill='%238B4513' x='0' y='350' width='800' height='50'/%3E%3Crect fill='%23654321' x='50' y='150' width='300' height='250'/%3E%3Crect fill='%23333' x='80' y='180' width='80' height='100'/%3E%3Crect fill='%2387CEEB' x='85' y='185' width='70' height='90'/%3E%3Crect fill='%23333' x='85' y='230' width='70' height='2'/%3E%3Crect fill='%23333' x='120' y='185' width='2' height='90'/%3E%3Crect fill='%23333' x='200' y='180' width='80' height='100'/%3E%3Crect fill='%2387CEEB' x='205' y='185' width='70' height='90'/%3E%3Crect fill='%23333' x='205' y='230' width='70' height='2'/%3E%3Crect fill='%23333' x='240' y='185' width='2' height='90'/%3E%3Crect fill='%238B4513' x='140' y='300' width='80' height='100'/%3E%3Crect fill='%23654321' x='145' y='305' width='70' height='90'/%3E%3Ccircle fill='%23FFD700' cx='155' cy='340' r='8'/%3E%3Cpolygon fill='%23654321' points='200,150 320,200 80,200'/%3E%3Crect fill='%23006400' x='500' y='320' width='60' height='80'/%3E%3Ccircle fill='%2332CD32' cx='530' cy='280' r='50'/%3E%3Ccircle fill='%2332CD32' cx='510' cy='300' r='40'/%3E%3Ccircle fill='%2332CD32' cx='550' cy='300' r='40'/%3E%3Crect fill='%23333' x='600' y='200' width='150' height='200'/%3E%3Crect fill='%23228B22' x='610' y='210' width='130' height='150'/%3E%3Ctext x='675' y='240' font-size='24' fill='white' text-anchor='middle' font-family='Arial' font-weight='bold'%3EABC%3C/text%3E%3Ctext x='675' y='270' font-size='20' fill='white' text-anchor='middle' font-family='Arial'%3E1+1=2%3C/text%3E%3Ctext x='675' y='300' font-size='20' fill='white' text-anchor='middle' font-family='Arial'%3E2Ã—3=6%3C/text%3E%3Crect fill='%238B4513' x='665' y='320' width='20' height='80'/%3E%3Ccircle fill='%23FFD700' cx='100' cy='80' r='40'/%3E%3Cpath fill='white' d='M100,40 Q80,50 85,70 Q90,60 100,65 Q110,60 115,70 Q120,50 100,40'/%3E%3C/svg%3E")`;
 
 const ANIMATIONS = `
   @keyframes moveCar {
@@ -90,7 +90,7 @@ const SocialFooter = ({ small = false }) => (
         </a>
       </div>
       <p className={`${small ? 'text-xs' : 'text-sm'} text-gray-600 leading-relaxed`}>
-        This game is made by <span className="font-semibold text-purple-600">AI</span> and inspired by <span className="font-semibold text-pink-600">My Nephew! 💝</span>
+        This game is made by <span className="font-semibold text-purple-600">AI</span> and inspired by <span className="font-semibold text-pink-600">My Nephew! 💙</span>
       </p>
     </div>
   </footer>
@@ -113,7 +113,6 @@ const BackgroundWrapper = ({ children, carDelays, carPositions }: any) => (
     <style>{ANIMATIONS}</style>
     
     <div className="relative z-10 flex-1 flex flex-col">
-      {/* 3 chiếc xe với 3 tốc độ khác nhau: 4s (Nhanh), 7s (Trung bình), 10s (Chậm) */}
       <div className="moving-car" style={{animationDelay: `${carDelays[0]}s`, animationDuration: '8s', fontSize: '48px', bottom: `${carPositions[0]}px`}}>🚗</div>
       <div className="moving-car" style={{animationDelay: `${carDelays[1]}s`, animationDuration: '9s', fontSize: '52px', bottom: `${carPositions[1]}px`}}>🚕</div>
       <div className="moving-car" style={{animationDelay: `${carDelays[2]}s`, animationDuration: '10s', fontSize: '45px', bottom: `${carPositions[2]}px`}}>🚙</div>
@@ -149,6 +148,11 @@ export default function MathAdventureGame() {
 
   const generateQuestion = () => {
     let operation: string, num1: number, num2: number, correctAnswer: number;
+    
+    // Reset states first
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+    setIsTimeout(false);
     
     if (grade === 'multiplicationTable') {
       operation = '×';
@@ -206,7 +210,8 @@ export default function MathAdventureGame() {
     if (showFeedback || isTimeout) return;
     setIsTimeout(true);
     setShowFeedback(true);
-    setScore(Math.max(0, score - 10));
+    // Timeout: subtract 0 points (remaining time is 0)
+    setScore(score - 0); // No change since timeLeft is 0
     setFailureCount(failureCount + 1);
     setCompletedLevels([...completedLevels, { level, success: false }]);
     nextStep();
@@ -219,13 +224,17 @@ export default function MathAdventureGame() {
     setShowFeedback(true);
     
     const isCorrect = answer === question!.correctAnswer;
+    const remainingSeconds = Math.ceil(timeLeft);
+    
     if (isCorrect) {
-      const texts = ["TUYỆT VỜI!", "HOAN HÔ!", "THIÊN TÀI!", "XUẤT SẮC!", "QUÁ ĐỈNH!", "SIÊU QUÁ!"];
+      // Correct answer: add remaining seconds to score
+      const texts = ["TUYỆT VỜI!", "HOÀN HẢO!", "THIÊN TÀI!", "XUẤT SẮC!", "QUÁ ĐỈNH!", "SIÊU QUÁ!"];
       setCongratsText(texts[Math.floor(Math.random() * texts.length)]);
       setShowConfetti(true);
-      setScore(score + 10);
+      setScore(score + remainingSeconds);
     } else {
-      setScore(Math.max(0, score - 10));
+      // Wrong answer: subtract remaining seconds from score
+      setScore(score - remainingSeconds);
       setFailureCount(failureCount + 1);
     }
     setCompletedLevels([...completedLevels, { level, success: isCorrect }]);
@@ -238,11 +247,15 @@ export default function MathAdventureGame() {
       setCongratsText('');
       if (level < 12) {
         setLevel(level + 1);
-        setShowFeedback(false);
-        setSelectedAnswer(null);
-        setIsTimeout(false);
         generateQuestion();
-      } else setScreen('victory');
+      } else {
+        // Check if score is negative for failure screen
+        if (score < 0) {
+          setScreen('failure');
+        } else {
+          setScreen('victory');
+        }
+      }
     }, 1500);
   };
 
@@ -316,7 +329,10 @@ export default function MathAdventureGame() {
           <button onClick={() => setScreen('welcome')} className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-gray-200 hover:bg-gray-300 transition-all text-gray-700">← Quay lại</button>
           <div className="flex items-center gap-2"><span className="text-2xl">👑</span><span className="font-bold text-lg">{playerName}</span></div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1"><span className="text-xl">🏆</span><span className="font-bold">{score}</span></div>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 border-2 border-yellow-300">
+              <span className="text-xl">💯</span>
+              <span className="font-bold text-yellow-800">Điểm: {score}</span>
+            </div>
             <div className="px-3 py-1 rounded-full bg-red-100 border-2 border-red-200"><span className="font-bold text-red-600">❌ {failureCount}</span></div>
           </div>
         </div>
@@ -401,10 +417,15 @@ export default function MathAdventureGame() {
             })}
           </div>
 
-          <div className="min-h-[80px]">
+          <div className="min-h-[100px] flex items-center justify-center">
             {showFeedback && (
-              <div className={`p-6 rounded-xl text-center font-bold text-xl shadow-inner ${isTimeout ? 'bg-orange-200 text-orange-900' : selectedAnswer === question.correctAnswer ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'}`}>
-                {isTimeout ? "⏰ Hết giờ rồi! Cố gắng câu sau nhé!" : selectedAnswer === question.correctAnswer ? '🎉 Giỏi quá! Chính xác rồi!' : '💪 Đừng bỏ cuộc! Tiếp tục nào!'}
+              <div className={`w-full p-6 rounded-xl text-center font-bold text-xl shadow-inner ${isTimeout ? 'bg-orange-200 text-orange-900' : selectedAnswer === question.correctAnswer ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'}`}>
+                {isTimeout ? 
+                  ["⏰ Hết giờ rồi! Cố gắng câu sau nhé!", "⏰ Lần sau trả lời nhanh hơn nha!", "⏰ Thời gian hết rồi! Tiếp tục thôi!", "⏰ Ối! Hết giờ! Câu sau sẽ tốt hơn!"][Math.floor(Math.random() * 4)]
+                  : selectedAnswer === question.correctAnswer ? 
+                    ['🎉 Giỏi quá! Chính xác rồi!', '🎉 Tuyệt vời! Đúng rồi!', '🎉 Xuất sắc! Hoàn hảo!', '🎉 Chính xác! Quá tài giỏi!', '🎉 Đúng đấy! Thông minh quá!', '🎉 Tài giỏi! 100 điểm!'][Math.floor(Math.random() * 6)]
+                    : ['💪 Đừng bỏ cuộc! Tiếp tục nào!', '💪 Chưa đúng! Cố lên nhé!', '💪 Sai rồi! Lần sau sẽ tốt hơn!', '💪 Ối! Câu sau cẩn thận hơn nha!', '💪 Chưa chính xác! Cố gắng tiếp!', '💪 Hãy thử lại lần sau!'][Math.floor(Math.random() * 6)]
+                }
               </div>
             )}
           </div>
@@ -426,13 +447,44 @@ export default function MathAdventureGame() {
                <span className="absolute -top-4 -right-4 text-4xl animate-pulse">✨</span>
                <span className="absolute -bottom-2 -left-4 text-4xl animate-pulse" style={{animationDelay: '0.5s'}}>🌟</span>
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4">🎉 CHIẾN THẮNG RỒI! 🎉</h1>
-            <p className="text-2xl font-bold text-gray-700 mb-2">{playerName} là ngôi sao toán học! 🌟</p>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4">🎉 CHIẾN THẮNG RỒI! 🎉</h1>
+            <p className="text-xl font-bold text-gray-700 mb-2">{playerName} là ngôi sao toán học! 🌟</p>
             <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-100 rounded-2xl p-6 mb-6 shadow-sm">
               <p className="text-xl font-bold text-green-600 mb-2">✅ Câu đúng: {sc}</p>
               <p className="text-xl font-bold text-red-600 mb-2">❌ Câu sai: {fc}</p>
               <div className="h-px bg-gray-200 my-2" />
               <p className="text-3xl font-black text-purple-700 mt-2">Điểm số: {score}</p>
+            </div>
+            <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
+          </div>
+          <SocialFooter small />
+        </div>
+      </BackgroundWrapper>
+    );
+  }
+
+  if (screen === 'failure') {
+    const sc = completedLevels.filter(d => d.success).length;
+    const fc = completedLevels.filter(d => !d.success).length;
+    return (
+      <BackgroundWrapper carDelays={carDelays} carPositions={carPositions}>
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center">
+            <div className="relative inline-block mb-4">
+               <div className="text-9xl animate-bounce">😢</div>
+               <span className="absolute -top-4 -right-4 text-4xl animate-pulse">💔</span>
+               <span className="absolute -bottom-2 -left-4 text-4xl animate-pulse" style={{animationDelay: '0.5s'}}>😔</span>
+            </div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-yellow-600 bg-clip-text text-transparent mb-4">😔 HÃY THỬ LẠI NHÉ!</h1>
+            <p className="text-xl font-bold text-gray-700 mb-2">{playerName} cần luyện tập thêm nhé! 💪</p>
+            <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-100 rounded-2xl p-6 mb-6 shadow-sm">
+              <p className="text-3xl font-black text-red-700 mb-3">Điểm số: {score}</p>
+              <div className="h-px bg-gray-200 my-2" />
+              <p className="text-xl font-bold text-green-600 mb-2">✅ Câu đúng: {sc}</p>
+              <p className="text-xl font-bold text-red-600">❌ Câu sai: {fc}</p>
+            </div>
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6">
+              <p className="text-sm text-blue-800 font-semibold">💡 Bí quyết: Suy nghĩ kỹ và trả lời thật nhanh để ghi điểm cao!</p>
             </div>
             <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
           </div>
