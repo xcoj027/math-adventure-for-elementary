@@ -77,6 +77,19 @@ const ANIMATIONS = `
 
 const SocialFooter = ({ small = false }) => (
   <footer className={`${small ? 'mt-6' : 'mt-8'} text-center relative z-[100]`}>
+    {/* Advertisement for Math Arena */}
+    <div className="mb-4 transform hover:scale-105 transition-transform duration-300">
+      <a 
+        href="https://math-arena.online" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full font-bold shadow-lg hover:shadow-indigo-500/50 transition-all border-2 border-white/30"
+      >
+        <span className="text-xl">⚔️</span>
+        Thử thách Math Arena - Chơi cùng bạn bè!
+      </a>
+    </div>
+
     <div className={`bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg mx-auto ${small ? 'p-3 max-w-2xl' : 'p-4 max-w-md'}`}>
       <div className={`flex justify-center gap-6 ${small ? 'mb-2' : 'mb-3'}`}>
         <a href="https://github.com/xcoj027" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-purple-600 transition-colors">
@@ -90,7 +103,7 @@ const SocialFooter = ({ small = false }) => (
         </a>
       </div>
       <p className={`${small ? 'text-xs' : 'text-sm'} text-gray-600 leading-relaxed`}>
-        This game is made by <span className="font-semibold text-purple-600">AI</span> and inspired by <span className="font-semibold text-pink-600">My Nephew! 💙</span>
+        Trò chơi được tạo bởi <span className="font-semibold text-purple-600">AI</span> và lấy cảm hứng từ <span className="font-semibold text-pink-600">Cháu trai của tôi! 💙</span>
       </p>
     </div>
   </footer>
@@ -149,7 +162,6 @@ export default function MathAdventureGame() {
   const generateQuestion = () => {
     let operation: string, num1: number, num2: number, correctAnswer: number;
     
-    // Reset states first
     setSelectedAnswer(null);
     setShowFeedback(false);
     setIsTimeout(false);
@@ -210,8 +222,6 @@ export default function MathAdventureGame() {
     if (showFeedback || isTimeout) return;
     setIsTimeout(true);
     setShowFeedback(true);
-    // Timeout: subtract 0 points (remaining time is 0)
-    setScore(score - 0); // No change since timeLeft is 0
     setFailureCount(failureCount + 1);
     setCompletedLevels([...completedLevels, { level, success: false }]);
     nextStep();
@@ -227,13 +237,11 @@ export default function MathAdventureGame() {
     const remainingSeconds = Math.ceil(timeLeft);
     
     if (isCorrect) {
-      // Correct answer: add remaining seconds to score
       const texts = ["TUYỆT VỜI!", "HOÀN HẢO!", "THIÊN TÀI!", "XUẤT SẮC!", "QUÁ ĐỈNH!", "SIÊU QUÁ!"];
       setCongratsText(texts[Math.floor(Math.random() * texts.length)]);
       setShowConfetti(true);
       setScore(score + remainingSeconds);
     } else {
-      // Wrong answer: subtract remaining seconds from score
       setScore(score - remainingSeconds);
       setFailureCount(failureCount + 1);
     }
@@ -249,7 +257,6 @@ export default function MathAdventureGame() {
         setLevel(level + 1);
         generateQuestion();
       } else {
-        // Check if score is negative for failure screen
         if (score < 0) {
           setScreen('failure');
         } else {
@@ -356,15 +363,12 @@ export default function MathAdventureGame() {
         </div>
 
         <div className="max-w-[896px] mx-auto w-full px-4 relative">
-          
           <div className="relative rounded-3xl mb-6 overflow-hidden p-1 shadow-xl" style={{
             background: `linear-gradient(135deg, ${timeLeft > 5 ? '#a78bfa, #ec4899, #60a5fa' : '#f87171, #ef4444, #fca5a5'})`,
             backgroundSize: '400% 100%', animation: `borderLineMove ${timeLeft > 5 ? '1s' : '0.5s'} linear infinite`
           }}>
             <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-[calc(1.5rem-4px)] p-8 relative overflow-hidden">
-              
               {congratsText && <div className="celebration-text">{congratsText}</div>}
-              
               {showConfetti && (
                 <div className="absolute inset-0 pointer-events-none z-50 overflow-hidden">
                   {[...Array(40)].map((_, i) => (
@@ -377,7 +381,6 @@ export default function MathAdventureGame() {
                   ))}
                 </div>
               )}
-
               <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
                 <span className="absolute top-4 left-8 text-5xl">🎨</span><span className="absolute top-8 right-12 text-4xl">📚</span><span className="absolute bottom-6 left-16 text-6xl">✏️</span>
               </div>
@@ -455,7 +458,20 @@ export default function MathAdventureGame() {
               <div className="h-px bg-gray-200 my-2" />
               <p className="text-3xl font-black text-purple-700 mt-2">Điểm số: {score}</p>
             </div>
-            <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
+            
+            {/* Direct Link to Math Arena for Winners */}
+            <div className="flex flex-col gap-3">
+              <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
+              
+              <a 
+                href="https://math-arena.online" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full px-4 py-4 rounded-2xl font-bold text-lg bg-indigo-600 text-white shadow-[0_4px_0_rgb(49,46,129)] hover:bg-indigo-700 transition-all flex items-center justify-center gap-2"
+              >
+                ⚔️ Thách đấu bạn bè tại Math Arena!
+              </a>
+            </div>
           </div>
           <SocialFooter small />
         </div>
@@ -486,7 +502,19 @@ export default function MathAdventureGame() {
             <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6">
               <p className="text-sm text-blue-800 font-semibold">💡 Bí quyết: Suy nghĩ kỹ và trả lời thật nhanh để ghi điểm cao!</p>
             </div>
-            <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">CHƠI LẠI NÀO! 🚀</button>
+            
+            <div className="flex flex-col gap-3">
+              <button onClick={() => setScreen('welcome')} className="w-full px-4 py-5 rounded-2xl font-black text-2xl bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-[0_8px_0_rgb(147,51,234)] hover:shadow-[0_4px_0_rgb(147,51,234)] active:shadow-none hover:translate-y-[4px] active:translate-y-[8px] transition-all">THỬ LẠI NÀO! 🚀</button>
+              
+              <a 
+                href="https://math-arena.online" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full px-4 py-3 rounded-2xl font-bold text-base bg-gray-100 text-indigo-700 border-2 border-indigo-200 hover:bg-white transition-all flex items-center justify-center gap-2"
+              >
+                🤝 Muốn chơi cùng bạn bè? Math Arena!
+              </a>
+            </div>
           </div>
           <SocialFooter small />
         </div>
